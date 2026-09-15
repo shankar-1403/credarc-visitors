@@ -1,0 +1,63 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'",
+        "role": {
+          ".validate": "newData.isString() && newData.val().matches(/^(admin|staff|reception)$/)"
+        }
+      }
+    },
+
+    "staff": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').val() === 'admin'",
+      ".indexOn": ["active", "department", "name"],
+      "$staffId": {
+        "fcmTokens": {
+          ".write": "auth != null && root.child('staff').child($staffId).child('email').val() === auth.token.email"
+        }
+      }
+    },
+
+    "visitor_requests": {
+      ".read": "root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'reception' || (query.orderByChild === 'staffEmail' && query.equalTo === auth.token.email)",
+      ".indexOn": ["staffId", "staffEmail", "status", "createdAt"],
+
+      "$requestId": {
+        ".read": true,
+        ".write": "!data.exists() || root.child('users').child(auth.uid).child('role').val() === 'admin' || data.child('staffEmail').val() === auth.token.email",
+
+        ".validate": "newData.hasChildren(['visitorName', 'visitorPhone', 'staffId', 'status', 'createdAt'])",
+
+        "status": {
+          ".validate": "newData.isString() && newData.val().matches(/^(pending|approved|declined|postponed)$/)"
+        },
+        "visitorName": { ".validate": "newData.isString() && newData.val().length <= 120" },
+        "visitorPhone": { ".validate": "newData.isString() && newData.val().length <= 40" },
+        "createdAt": { ".validate": "newData.isNumber()" }
+      }
+    },
+
+    "calendar_events": {
+      ".read": "auth != null && (root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'reception')",
+      "$staffId": {
+        ".read": "auth != null && (root.child('staff').child($staffId).child('email').val() === auth.token.email || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'reception')",
+        ".write": "auth != null && (root.child('staff').child($staffId).child('email').val() === auth.token.email || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+      }
+    },
+
+    "busy_blocks": {
+      ".read": true,
+      "$staffId": {
+        ".write": "auth != null && (root.child('staff').child($staffId).child('email').val() === auth.token.email || root.child('users').child(auth.uid).child('role').val() === 'admin')"
+      }
+    },
+
+    "$other": {
+      ".read": false,
+      ".write": false
+    }
+  }
+}

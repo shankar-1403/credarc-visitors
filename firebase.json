@@ -1,0 +1,18 @@
+{
+  "apphosting": [
+    {
+      "backendId": "pcred-visitors",
+      "rootDir": "/",
+      "ignore": [
+        "node_modules",
+        ".next",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
+  "database": {
+    "rules": "database.rules.json"
+  }
+}
