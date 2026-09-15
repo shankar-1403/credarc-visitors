@@ -14,13 +14,13 @@ importScripts("https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js
 importScripts("https://www.gstatic.com/firebasejs/12.18.0/firebase-messaging-compat.js");
 
 firebase.initializeApp({
-  apiKey: "AIzaSyBJT43YuYjpFTTYSu8HbZ7eqQp4lQxuObc",
-  authDomain: "pcred-visitors.firebaseapp.com",
-  databaseURL: "https://pcred-visitors-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "pcred-visitors",
-  storageBucket: "pcred-visitors.firebasestorage.app",
-  messagingSenderId: "623340940557",
-  appId: "1:623340940557:web:09d60000168fbe015cd444",
+  apiKey: "AIzaSyCUg_n49HXFgK7cgplbr2dz4q4tTorVjzY",
+  authDomain: "credarc-visiting-system.firebaseapp.com",
+  databaseURL: "https://credarc-visiting-system-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "credarc-visiting-system",
+  storageBucket: "credarc-visiting-system.firebasestorage.app",
+  messagingSenderId: "17330801437",
+  appId: "1:17330801437:web:ab4b3f18ca371c7fb56ff4",
 });
 
 /*

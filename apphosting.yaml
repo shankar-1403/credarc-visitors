@@ -9,52 +9,53 @@
 
 env:
   - variable: NEXT_PUBLIC_FIREBASE_API_KEY
-    value: "AIzaSyBJT43YuYjpFTTYSu8HbZ7eqQp4lQxuObc"
+    value: "AIzaSyCUg_n49HXFgK7cgplbr2dz4q4tTorVjzY"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
-    value: "pcred-visitors.firebaseapp.com"
+    value: "credarc-visiting-system.firebaseapp.com"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_DATABASE_URL
-    value: "https://pcred-visitors-default-rtdb.asia-southeast1.firebasedatabase.app"
+    value: "https://credarc-visiting-system-default-rtdb.asia-southeast1.firebasedatabase.app"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
-    value: "pcred-visitors"
+    value: "credarc-visiting-system"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-    value: "pcred-visitors.firebasestorage.app"
+    value: "credarc-visiting-system.firebasestorage.app"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
-    value: "623340940557"
+    value: "17330801437"
     availability:
       - BUILD
       - RUNTIME
 
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
-    value: "1:623340940557:web:09d60000168fbe015cd444"
+    value: "1:17330801437:web:ab4b3f18ca371c7fb56ff4"
     availability:
       - BUILD
       - RUNTIME
 
-  - variable: NEXT_PUBLIC_FIREBASE_VAPID_KEY
-    value: "BFtlEffW8HrbHHh3EKRbCLbsze1Mw4FUv5aCBHX0-dAaSPbBQ0TogXvtAXN1inxpgKGo2nrwApBGzx3RjPMdJ74"
-    availability:
-      - BUILD
-      - RUNTIME
+  # Web Push (optional). Project settings → Cloud Messaging → Web Push certificates.
+  # - variable: NEXT_PUBLIC_FIREBASE_VAPID_KEY
+  #   value: ""
+  #   availability:
+  #     - BUILD
+  #     - RUNTIME
 
   # --- Real credentials: set with `firebase apphosting:secrets:set <name>`,
   # then this file just references the secret by name, never the value.
@@ -70,12 +71,7 @@ env:
     availability:
       - RUNTIME
 
-  - variable: SMTP_USER
-    secret: smtp-user
-    availability:
-      - RUNTIME
-
-  - variable: SMTP_PASS
-    secret: smtp-pass
-    availability:
-      - RUNTIME
+  # Email is optional. Do not reference these until they exist:
+  #   firebase apphosting:secrets:set smtp-user
+  #   firebase apphosting:secrets:set smtp-pass
+  # A missing secret here fails the whole App Hosting build.

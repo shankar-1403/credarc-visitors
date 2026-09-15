@@ -21,16 +21,36 @@ const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const CLIENT_EMAIL = (
   process.env.ADMIN_SDK_CLIENT_EMAIL ?? process.env.FIREBASE_ADMIN_CLIENT_EMAIL
 )?.trim();
-// The key is quoted in .env.local because it spans lines. Loading a .env file
-// strips those quotes; Secret Manager hands the value back exactly as pasted,
-// so in production they survive and OpenSSL rejects the key outright with
-// ERR_OSSL_UNSUPPORTED — an Admin SDK that looks configured but fails on use.
-const PRIVATE_KEY = (
+const PRIVATE_KEY = normalizePrivateKey(
   process.env.ADMIN_SDK_PRIVATE_KEY ?? process.env.FIREBASE_ADMIN_PRIVATE_KEY
-)
-  ?.trim()
-  .replace(/^["']|["']$/g, "")
-  .replace(/\\n/g, "\n");
+);
+
+/**
+ * Secret Manager and .env.local both mangle PEM keys. Quotes survive, `\n`
+ * stays literal, and pasting from the JSON often drops the BEGIN/END lines
+ * entirely — OpenSSL then fails with ERR_OSSL_UNSUPPORTED, which the UI
+ * surfaces as "Could not save that login."
+ */
+function normalizePrivateKey(raw: string | undefined): string | undefined {
+  if (!raw) return raw;
+
+  let key = raw
+    .trim()
+    .replace(/^["']|["']$/g, "")
+    .replace(/\r\n/g, "\n")
+    .replace(/\\n/g, "\n")
+    .trim();
+
+  if (!/BEGIN [A-Z ]*PRIVATE KEY/.test(key)) {
+    const body = key.replace(/\s+/g, "");
+    if (!body) return key;
+    const wrapped = body.match(/.{1,64}/g)?.join("\n") ?? body;
+    key = `-----BEGIN PRIVATE KEY-----\n${wrapped}\n-----END PRIVATE KEY-----\n`;
+  }
+
+  return key;
+}
+
 const DATABASE_URL = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL;
 
 export const HAS_ADMIN_CONFIG = Boolean(
