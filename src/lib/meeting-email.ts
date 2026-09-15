@@ -15,8 +15,8 @@ import { sendMail } from "./mailer";
 const CREDARC_OFFICE_ADDRESS =
   "Lodha Supremus, 511, Off Mahakali Caves Rd, Chakala Industrial Area (MIDC), Andheri East, Mumbai, Maharashtra 400093";
 
-const LOGO_PATH = path.join(process.cwd(), "public", "email", "credarc_white.webp");
-const LOGO_CID = "credarc_white";
+const LOGO_PATH = path.join(process.cwd(), "public", "email", "credarc-logo.png");
+const LOGO_CID = "credarc-logo";
 
 function formatWhen(ms: number) {
   // This runs on the server, which isn't necessarily in India (App Hosting's

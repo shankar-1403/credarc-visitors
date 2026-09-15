@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   // Internal office tool — never meant to be found through search.
   robots: { index: false, follow: false, nocache: true },
   icons: {
-    icon: "/favicon.jpg",
+    icon: "/favicon.svg",
     apple: "/apple-icon.png",
   },
   // iOS ignores the web app manifest for these, so they have to be said twice.

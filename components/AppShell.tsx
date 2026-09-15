@@ -13,7 +13,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import VisitorAlert from "./VisitorAlert";
 import InstallApp from "./InstallApp";
 import ThemeToggle from "./ThemeToggle";
-import logo from '../public/logo.webp';
+import logo from '../public/credarc_dark.webp';
 import lightLogo from '../public/credarc_white.webp'
 
 /**
