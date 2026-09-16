@@ -50,12 +50,11 @@ env:
       - BUILD
       - RUNTIME
 
-  # Web Push (optional). Project settings → Cloud Messaging → Web Push certificates.
-  # - variable: NEXT_PUBLIC_FIREBASE_VAPID_KEY
-  #   value: ""
-  #   availability:
-  #     - BUILD
-  #     - RUNTIME
+  - variable: NEXT_PUBLIC_FIREBASE_VAPID_KEY
+    value: "BHxa26aer027gToaLn6ZT9KUU1-x1S997E_vcoLz-SvJQ3ouKEodNYkRIRWQHn9YI4g_UALkN2MiuXOa7IjiL0I"
+    availability:
+      - BUILD
+      - RUNTIME
 
   # --- Real credentials: set with `firebase apphosting:secrets:set <name>`,
   # then this file just references the secret by name, never the value.

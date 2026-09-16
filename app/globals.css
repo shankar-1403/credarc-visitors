@@ -11,7 +11,11 @@
 
 /*
  * CREDARC brand system, matched to the main site.
- * Canonical dark blue #045178, gold accent #B8892E / #D9B872, maroon #8A191F.
+ * Canonical dark blue #045178, accent #0575DD / #09B6F1, maroon #8A191F.
+ * The accent is used as an arbitrary Tailwind value (`bg-[#0575DD]`) rather
+ * than a named token below — gold-100/400/500 stay defined only because a
+ * few calendar accents still use that separate gold, unrelated to the
+ * primary brand accent.
  */
 @theme {
   --color-brand-deep: #022436;
@@ -24,8 +28,6 @@
   --color-navy-900: #045178;
 
   --color-gold-100: #f3e2bb;
-  --color-[#09B6F1]: #e8cd8c;
-  --color-[#0575DD]: #d9b872;
   --color-gold-400: #c7a047;
   --color-gold-500: #b8892e;
 

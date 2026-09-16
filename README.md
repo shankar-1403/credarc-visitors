@@ -80,7 +80,7 @@ create one:
 3. **Realtime Database → Data**, and add:
 
    ```
-   roles/<that-uid>  =  { "role": "admin", "email": "you@pcred.org" }
+   roles/<that-uid>  =  { "role": "admin", "email": "you@credarc.org" }
    ```
 
 Sign in at `/staff` and you are an admin. Everyone after this you create from

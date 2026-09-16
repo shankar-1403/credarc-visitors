@@ -196,7 +196,7 @@ export async function sendMeetingEmail(options: {
     text,
     html,
     ...(hasLogo
-      ? { attachments: [{ filename: "credarc_white.webp", path: LOGO_PATH, cid: LOGO_CID }] }
+      ? { attachments: [{ filename: "credarc-logo.png", path: LOGO_PATH, cid: LOGO_CID }] }
       : {}),
   });
 }
