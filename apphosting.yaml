@@ -70,7 +70,12 @@ env:
     availability:
       - RUNTIME
 
-  # Email is optional. Do not reference these until they exist:
-  #   firebase apphosting:secrets:set smtp-user
-  #   firebase apphosting:secrets:set smtp-pass
-  # A missing secret here fails the whole App Hosting build.
+  - variable: SMTP_USER
+    secret: smtp-user
+    availability:
+      - RUNTIME
+
+  - variable: SMTP_PASS
+    secret: smtp-pass
+    availability:
+      - RUNTIME
